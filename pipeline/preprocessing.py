@@ -6,7 +6,7 @@ import gc
 from imblearn.over_sampling import SMOTE
 
 
-def create_splits_and_save(df, save_dir, seed):
+def create_splits(df, save_dir, seed):
 	# add index column
 	total_rows = df.shape[0]
 	df = df.with_columns(pl.Series("index", list(range(total_rows))))
