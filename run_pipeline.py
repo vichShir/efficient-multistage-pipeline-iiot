@@ -93,10 +93,10 @@ def preprocess_data(df_train, df_fs, df_valid, df_test):
 
 	# save preprocessed splits to disk
 	print('Saving data splits to disk. This may take a while...')
-	# df_train.to_csv(f'./data/datasets/splits/BRUIIoT_train_preprocessed_seed{SEED}.csv', index=False)
-	# df_fs.write_csv(f'./data/datasets/splits/BRUIIoT_fs_preprocessed_seed{SEED}.csv')
-	# df_valid.write_csv(f'./data/datasets/splits/BRUIIoT_valid_preprocessed_seed{SEED}.csv')
-	# df_test.write_csv(f'./data/datasets/splits/BRUIIoT_test_preprocessed_seed{SEED}.csv')
+	df_train.to_csv(f'./data/datasets/splits/BRUIIoT_train_preprocessed_seed{SEED}.csv', index=False)
+	df_fs.write_csv(f'./data/datasets/splits/BRUIIoT_fs_preprocessed_seed{SEED}.csv')
+	df_valid.write_csv(f'./data/datasets/splits/BRUIIoT_valid_preprocessed_seed{SEED}.csv')
+	df_test.write_csv(f'./data/datasets/splits/BRUIIoT_test_preprocessed_seed{SEED}.csv')
 
 	del df_train, df_fs, df_valid, df_test
 	gc.collect()
