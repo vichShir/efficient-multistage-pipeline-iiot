@@ -28,8 +28,8 @@ import matplotlib.ticker as mtick
 import seaborn as sns
 
 
-MODEL_SAVE_DIR_TS = './data/models/training_size'  # training size
-MODEL_SAVE_DIR_FS = './data/models/feature_selection'  # feature selection
+MODEL_SAVE_DIR_TS = './data/models/training_size'  # training size models
+MODEL_SAVE_DIR_FS = './data/models/feature_selection'  # feature selection models
 
 
 def load_data():
@@ -473,7 +473,7 @@ def main(args):
 
 
 if __name__ == '__main__':
-	parser = argparse.ArgumentParser(description="Example of argparse usage.")
+	parser = argparse.ArgumentParser()
 	parser.add_argument("--seed", type=int, help="Random number generator.")
 	parser.add_argument("--n_jobs", type=int, default=2, help="Number of parallel workers (CPU cores).")
 	args = parser.parse_args()
