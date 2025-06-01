@@ -26,7 +26,7 @@ def create_data_dirs():
     os.makedirs('./data/results/', exist_ok=True)
 
     os.makedirs('./data/datasets/splits', exist_ok=True)
-    os.makedirs('./data/datasets/inference_time', exist_ok=True)
+    os.makedirs('./data/datasets/features', exist_ok=True)
 
     os.makedirs('./data/models/training_size', exist_ok=True)
     os.makedirs('./data/models/feature_selection', exist_ok=True)
