@@ -208,7 +208,7 @@ def determine_training_size(df_train, df_valid, targets_cols, labels, n_jobs=2):
 	return training_size_time
 
 
-def feature_selection(X_train, y_train, X_fs, y_fs, X_valid, y_valid, labels, modules, smote_time, training_size_time, n_jobs=2):
+def feature_selection(X_train, y_train, X_fs, y_fs, X_valid, y_valid, X_test, y_test, labels, modules, smote_time, training_size_time, n_jobs=2):
 	##########################
 	### mutual information ###
 	##########################
@@ -318,7 +318,7 @@ def feature_selection(X_train, y_train, X_fs, y_fs, X_valid, y_valid, labels, mo
 	#######################
 	df_results_random = random_features(
 	    X_train, y_train, 
-	    X_valid, y_valid, 
+	    X_test, y_test, 
 	    n_features_to_select=len(causal_selected_features), 
 	    model_save_dir=MODEL_SAVE_DIR_FS,
 	    seed=SEED,
@@ -343,7 +343,8 @@ def feature_selection(X_train, y_train, X_fs, y_fs, X_valid, y_valid, labels, mo
 	    'Mutual Information': [list(mi_features)],
 	    'Markov Blanket': [list(causal_selected_features)],
 	    'Boruta': [list(boruta_selected_features)],
-	    'RFE': [list(rfe_selected_features)]
+	    'RFE': [list(rfe_selected_features)],
+	    'Random Features': [random_selected_features.to_list()]
 	})
 	df_feats.to_csv(f'./data/results/feature_selection/features/selected_features_seed{SEED}.csv', index=False)
 
@@ -354,13 +355,10 @@ def feature_selection(X_train, y_train, X_fs, y_fs, X_valid, y_valid, labels, mo
 	    boruta_results,
 	    rfe_results
 	])
-	df_metrics.to_csv(f'./data/results/feature_selection/metrics/feature_selection_metrics_seed{SEED}.csv', index=False)
+	df_metrics.to_csv(f'./data/results/feature_selection/metrics/feature_selection_metrics_valid_seed{SEED}.csv', index=False)
 
 	# random features
-	df_results_random.drop(columns=['model']) \
-	    .describe() \
-	    .reset_index() \
-	    .to_csv(f'./data/results/feature_selection/metrics/random_features_metrics_seed{SEED}.csv', index=False)
+	df_results_random.to_csv(f'./data/results/feature_selection/metrics/random_features_metrics_test_seed{SEED}.csv', index=False)
 
 	# total pipeline time
 	df_pipeline_time = pd.DataFrame({
@@ -469,7 +467,7 @@ def main(args):
 	    print(f'Columns length: {len(cols)}, columns:', cols)
 	    print('')
 
-	feature_selection(X_train, y_train, X_fs, y_fs, X_valid, y_valid, labels, modules, smote_time, training_size_time, n_jobs=N_JOBS)
+	feature_selection(X_train, y_train, X_fs, y_fs, X_valid, y_valid, X_test, y_test, labels, modules, smote_time, training_size_time, n_jobs=N_JOBS)
 
 
 if __name__ == '__main__':

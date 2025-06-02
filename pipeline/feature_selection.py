@@ -125,14 +125,14 @@ def fs_rfe(X_fs, y_fs, n_features_to_select, seed):
     return selected_features
 
 
-def random_features(X_train, y_train, X_valid, y_valid, n_features_to_select, model_save_dir, seed, n_jobs=2):
+def random_features(X_train, y_train, X_test, y_test, n_features_to_select, model_save_dir, seed, n_jobs=2):
     random_results = []
     for idx, features_seed in enumerate(range(0, 300, 10)):
         random_cols = X_train.sample(n_features_to_select, axis=1, random_state=features_seed).columns
         print(f'\tRound: {idx} Selected features: {random_cols} - Seed {seed}')
         df_results = train_xgboost(
             X_train.loc[:, random_cols], y_train, 
-            X_valid.loc[:, random_cols], y_valid, 
+            X_test.loc[:, random_cols], y_test, 
             seed=seed,
             method_name=f'Random {n_features_to_select} features - Seed {seed}', 
             save_dir=model_save_dir,
@@ -142,4 +142,4 @@ def random_features(X_train, y_train, X_valid, y_valid, n_features_to_select, mo
         )
         random_results.append(df_results)
     df_results = pd.concat(random_results, axis=0)
-    return df_results
+    return df_results, random_cols
