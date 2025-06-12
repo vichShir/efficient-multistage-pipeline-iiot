@@ -11,6 +11,8 @@ For more information contact: victor.shirasuna@ime.usp.br
     2. [Replicating Python Environment - Pipeline](#replicating-python-environment---pipeline)
     3. [Replicating Python Environment - Raspberry Pi](#replicating-python-environment---raspberry-pi)
     4. [Configuring BRURIIoT dataset](#configuring-bruriiot-dataset)
+2. [Running the Pipeline](#running-the-pipeline)
+3. [Running Predictions on Raspberry Pi](#running-predictions-on-raspberry-pi)
 
 ## Getting Started
 
@@ -91,3 +93,20 @@ pip install -r requirements_raspberry.txt
 ```
 
 ### Configuring BRURIIoT dataset
+
+The BRURIIoT dataset can be downloaded at the following link: https://ieee-dataport.org/documents/bruriiot-dataset-network-anomaly-detection-iiot-enhanced-feature-engineering-approach
+
+Place the `BRUIIoT.csv` dataset file at the following location:
+```
+data/
+└── datasets/
+    ├── splits
+    ├── features
+    └── BRUIIoT.csv
+```
+
+The pipeline will automatically create the necessary data splits and place at `data/datasets/splits` path.
+
+### Running the Pipeline
+
+### Running Predictions on Raspberry Pi
