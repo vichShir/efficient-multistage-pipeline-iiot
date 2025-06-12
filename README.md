@@ -17,6 +17,31 @@ Follow these steps to replicate our Mamba environment and install the necessary 
 
 ### Directory Organization
 
+#### Pipeline
+
+The pipeline automatically create the following folders:
+```
+data/
+├── datasets/
+│   ├── splits
+│   └── features
+├── models/
+│   ├── training_size
+│   └── feature_selection
+└── results/
+    ├── confusion_matrix
+    ├── feature_importance
+    ├── feature_selection
+    ├── inference_time
+    ├── training_size
+    └── feature_selection/
+        ├── features
+        ├── metrics
+        └── pipeline
+```
+
+#### Raspberry Pi
+
 Create the following folders to run on a Raspberry Pi device:
 ```
 raspberry_pi/
