@@ -10,16 +10,17 @@ For more information contact: victor.shirasuna@ime.usp.br
 	1. [Directory Organization](#directory-organization)
     2. [Replicating Python Environment - Pipeline](#replicating-python-environment---pipeline)
     3. [Replicating Python Environment - Raspberry Pi](#replicating-python-environment---raspberry-pi)
+    4. [Configuring BRURIIoT dataset](#configuring-bruriiot-dataset)
 
 ## Getting Started
 
-Follow these steps to replicate our Mamba environment and install the necessary libraries:
+Follow these steps to replicate our data organization and Python environment with the necessary libraries:
 
 ### Directory Organization
 
-#### Pipeline
+#### Create Folders for Pipeline
 
-The pipeline automatically create the following folders:
+The pipeline automatically creates the following folders:
 ```
 data/
 ├── datasets/
@@ -40,7 +41,7 @@ data/
         └── pipeline
 ```
 
-#### Raspberry Pi
+#### Create Folders for Raspberry Pi
 
 Create the following folders to run on a Raspberry Pi device:
 ```
@@ -88,3 +89,5 @@ For Raspberry Pi environment, only the following python dependencies are require
 ```shell
 pip install -r requirements_raspberry.txt
 ```
+
+### Configuring BRURIIoT dataset
