@@ -8,8 +8,8 @@ For more information contact: victor.shirasuna@ime.usp.br
 
 1. [Getting Started](#getting-started)
 	1. [Directory Organization](#directory-organization)
-    2. [Replicating Python Environment - Pipeline](#replicating-conda-environment-pipeline)
-    3. [Replicating Python Environment - Raspberry Pi](#replicating-conda-environment-raspberry-pi)
+    2. [Replicating Python Environment - Pipeline](#replicating-python-environment---pipeline)
+    3. [Replicating Python Environment - Raspberry Pi](#replicating-conda-environment---raspberry-pi)
 
 ## Getting Started
 
@@ -41,7 +41,7 @@ mamba activate pipeline
 #### Install Pip dependencies
 
 ```shell
-pip install -r requirements.txt
+pip install -r requirements_pipeline.txt
 ```
 
 ### Replicating Python Environment - Raspberry Pi
@@ -61,9 +61,5 @@ mamba activate raspberry
 
 For Raspberry Pi environment, only the following python dependencies are required from `requirements.txt`:
 ```shell
-numpy>=2.2.5
-pandas>=2.2.3
-scikit-learn>=1.6.1
-xgboost==2.1.4
-tqdm>=4.67.1
+pip install -r requirements_raspberry.txt
 ```
