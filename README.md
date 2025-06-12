@@ -9,7 +9,7 @@ For more information contact: victor.shirasuna@ime.usp.br
 1. [Getting Started](#getting-started)
 	1. [Directory Organization](#directory-organization)
     2. [Replicating Python Environment - Pipeline](#replicating-python-environment---pipeline)
-    3. [Replicating Python Environment - Raspberry Pi](#replicating-conda-environment---raspberry-pi)
+    3. [Replicating Python Environment - Raspberry Pi](#replicating-python-environment---raspberry-pi)
 
 ## Getting Started
 
