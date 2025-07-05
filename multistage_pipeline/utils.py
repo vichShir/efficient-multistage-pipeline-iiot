@@ -21,22 +21,22 @@ def convert_bytes_to_megabytes(size_bytes):
 
 
 def create_data_dirs():
-    os.makedirs('./data/datasets/', exist_ok=True)
-    os.makedirs('./data/models/', exist_ok=True)
-    os.makedirs('./data/results/', exist_ok=True)
+    os.makedirs('../data/datasets/', exist_ok=True)
+    os.makedirs('../data/models/', exist_ok=True)
+    os.makedirs('../data/results/', exist_ok=True)
 
-    os.makedirs('./data/datasets/splits', exist_ok=True)
-    os.makedirs('./data/datasets/features', exist_ok=True)
+    os.makedirs('../data/datasets/splits', exist_ok=True)
+    os.makedirs('../data/datasets/features', exist_ok=True)
 
-    os.makedirs('./data/models/training_size', exist_ok=True)
-    os.makedirs('./data/models/feature_selection', exist_ok=True)
+    os.makedirs('../data/models/training_size', exist_ok=True)
+    os.makedirs('../data/models/feature_selection', exist_ok=True)
 
-    os.makedirs('./data/results/confusion_matrix', exist_ok=True)
-    os.makedirs('./data/results/feature_importance', exist_ok=True)
-    os.makedirs('./data/results/feature_selection', exist_ok=True)
-    os.makedirs('./data/results/inference_time', exist_ok=True)
-    os.makedirs('./data/results/training_size', exist_ok=True)
+    os.makedirs('../data/results/confusion_matrix', exist_ok=True)
+    os.makedirs('../data/results/feature_importance', exist_ok=True)
+    os.makedirs('../data/results/feature_selection', exist_ok=True)
+    os.makedirs('../data/results/inference_time', exist_ok=True)
+    os.makedirs('../data/results/training_size', exist_ok=True)
 
-    os.makedirs('./data/results/feature_selection/features', exist_ok=True)
-    os.makedirs('./data/results/feature_selection/metrics', exist_ok=True)
-    os.makedirs('./data/results/feature_selection/pipeline', exist_ok=True)
+    os.makedirs('../data/results/feature_selection/features', exist_ok=True)
+    os.makedirs('../data/results/feature_selection/metrics', exist_ok=True)
+    os.makedirs('../data/results/feature_selection/pipeline', exist_ok=True)

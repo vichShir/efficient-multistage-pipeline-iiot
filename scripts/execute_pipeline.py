@@ -5,7 +5,8 @@ import argparse
 import time
 import gc
 import os
-os.path.insert(0, '../')
+import sys
+sys.path.insert(0, '../')
 
 from multistage_pipeline.preprocessing import (
     create_splits, 
@@ -22,7 +23,7 @@ from multistage_pipeline.feature_selection import (
 )
 from multistage_pipeline.model import train_xgboost
 from multistage_pipeline.training_size import training_size
-from multistage_pipeline.utils import create_data_dirs, get_protocols, filter_module
+from multistage_pipeline.utils import get_protocols, filter_module
 
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
@@ -476,9 +477,6 @@ if __name__ == '__main__':
 	parser.add_argument("--seed", type=int, help="Random number generator.")
 	parser.add_argument("--n_jobs", type=int, default=2, help="Number of parallel workers (CPU cores).")
 	args = parser.parse_args()
-
-	# create directories
-	create_data_dirs()
 
 	# run pipeline
 	main(args)

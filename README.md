@@ -24,7 +24,13 @@ Follow these steps to replicate our data organization and Python environment:
 
 #### Multi-Stage Pipeline Structure
 
-The multi-stage pipeline will automatically create the following directories:
+Execute the following script to create the data directories:
+```shell
+cd ./scripts
+bash run_create_dirs.sh
+```
+
+The following directories will be created:
 ```
 data/
 ├── datasets/

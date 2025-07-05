@@ -21,8 +21,8 @@ import pickle
 import time
 from tqdm import tqdm
 
-from pipeline.model import train_xgboost
-from pipeline.utils import filter_module
+from multistage_pipeline.model import train_xgboost
+from multistage_pipeline.utils import filter_module
 
 
 def fs_mutual_information(X_fs, y_fs, seed, n_jobs=2):

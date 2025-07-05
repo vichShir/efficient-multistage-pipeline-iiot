@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 import os
 import gc
-from pipeline.model import train_xgboost
-from pipeline.utils import convert_bytes_to_megabytes
+from multistage_pipeline.model import train_xgboost
+from multistage_pipeline.utils import convert_bytes_to_megabytes
 from tqdm import tqdm
 
 
