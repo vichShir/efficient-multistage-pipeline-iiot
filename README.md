@@ -96,6 +96,8 @@ data/
 
 ## 2. Exploratory Data Analysis (EDA)
 
+We conducted an Exploratory Data Analysis (EDA) of the BRURIIoT dataset to further understand its structure. All used codes are available at the following notebook `exploratory_data_analysis_eda.ipynb`.
+
 ## 3. Running the Pipeline
 
 ## 4. Running Predictions on Raspberry Pi
