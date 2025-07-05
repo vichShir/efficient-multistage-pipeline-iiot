@@ -12,7 +12,7 @@ For more information contact: victor.shirasuna@ime.usp.br
     1. [Directory Organization](#directory-organization)
     2. [Replicating Python Environment](#replicating-python-environment)
     4. [Configuring the BRURIIoT dataset](#configuring-the-bruriiot-dataset)
-2. [Exploratory Data Analysis (EDA)](#2-exploratory-data-analysis-(eda))
+2. [Exploratory Data Analysis (EDA)](#2-exploratory-data-analysis-eda)
 3. [Running the Pipeline](#3-running-the-pipeline)
 4. [Running Predictions on Raspberry Pi](#4-running-predictions-on-raspberry-pi)
 

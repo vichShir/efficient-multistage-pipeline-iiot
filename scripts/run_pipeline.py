@@ -3,44 +3,45 @@ import pandas as pd
 import numpy as np
 import argparse
 import time
-import os
 import gc
+import os
+os.path.insert(0, '../')
 
-from pipeline.preprocessing import (
+from multistage_pipeline.preprocessing import (
     create_splits, 
     transform_labels, 
     get_labels_mapping,
     balance_labels_with_smote
 )
-from pipeline.feature_selection import (
+from multistage_pipeline.feature_selection import (
     fs_mutual_information,
     fs_markov_blanket,
     fs_boruta,
     fs_rfe,
     random_features
 )
-from pipeline.model import train_xgboost
-from pipeline.training_size import training_size
-from pipeline.utils import create_data_dirs, get_protocols, filter_module
+from multistage_pipeline.model import train_xgboost
+from multistage_pipeline.training_size import training_size
+from multistage_pipeline.utils import create_data_dirs, get_protocols, filter_module
 
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 import seaborn as sns
 
 
-MODEL_SAVE_DIR_TS = './data/models/training_size'  # training size models
-MODEL_SAVE_DIR_FS = './data/models/feature_selection'  # feature selection models
+MODEL_SAVE_DIR_TS = '../data/models/training_size'  # training size models
+MODEL_SAVE_DIR_FS = '../data/models/feature_selection'  # feature selection models
 
 
 def load_data():
 	# load dataset with Polars
-	df = pl.read_csv('./data/datasets/BRUIIoT.csv')
+	df = pl.read_csv('../data/datasets/BRUIIoT.csv')
 	print('Original dataset size:', df.shape)
 	print(f'There are {df.shape[0]} total observations.')
 
 	# create splits
 	print('\nSplits division:')
-	df_train, df_fs, df_valid, df_test = create_splits(df, './data/datasets/splits', seed=SEED)
+	df_train, df_fs, df_valid, df_test = create_splits(df, '../data/datasets/splits', seed=SEED)
 
 	# clear memory
 	del df
@@ -88,16 +89,16 @@ def preprocess_data(df_train, df_fs, df_valid, df_test):
 	plt.ylabel('')
 	plt.xticks(rotation=30)
 	plt.tight_layout()
-	plt.savefig(f"./data/results/attack_distribution_training.png", bbox_inches='tight')
+	plt.savefig(f"../data/results/attack_distribution_training.png", bbox_inches='tight')
 	plt.close()
 
 	# save preprocessed splits to disk
 	print('Saving data splits to disk. This may take a while...')
-	if not os.path.exists(f'./data/datasets/splits/BRUIIoT_train_preprocessed_seed{SEED}.csv'):
-		df_train.to_csv(f'./data/datasets/splits/BRUIIoT_train_preprocessed_seed{SEED}.csv', index=False)
-		df_fs.write_csv(f'./data/datasets/splits/BRUIIoT_fs_preprocessed_seed{SEED}.csv')
-		df_valid.write_csv(f'./data/datasets/splits/BRUIIoT_valid_preprocessed_seed{SEED}.csv')
-		df_test.write_csv(f'./data/datasets/splits/BRUIIoT_test_preprocessed_seed{SEED}.csv')
+	if not os.path.exists(f'../data/datasets/splits/BRUIIoT_train_preprocessed_seed{SEED}.csv'):
+		df_train.to_csv(f'../data/datasets/splits/BRUIIoT_train_preprocessed_seed{SEED}.csv', index=False)
+		df_fs.write_csv(f'../data/datasets/splits/BRUIIoT_fs_preprocessed_seed{SEED}.csv')
+		df_valid.write_csv(f'../data/datasets/splits/BRUIIoT_valid_preprocessed_seed{SEED}.csv')
+		df_test.write_csv(f'../data/datasets/splits/BRUIIoT_test_preprocessed_seed{SEED}.csv')
 
 	del df_train, df_fs, df_valid, df_test
 	gc.collect()
@@ -128,7 +129,7 @@ def determine_training_size(df_train, df_valid, targets_cols, labels, n_jobs=2):
 	training_size_time = end_time - start_time
 
 	# save results
-	df_results.to_csv(f'./data/results/training_size/training_size_results_seed{SEED}.csv', index=False)
+	df_results.to_csv(f'../data/results/training_size/training_size_results_seed{SEED}.csv', index=False)
 
 	# plotting
 	left_color = 'dodgerblue'
@@ -173,7 +174,7 @@ def determine_training_size(df_train, df_valid, targets_cols, labels, n_jobs=2):
 	sns.despine(top=True, right=False, left=False, bottom=False)
 	plt.ylabel('Delta', color=right_color)
 	plt.title(f'Performance metrics vs training size - Seed {SEED}')
-	plt.savefig(f"./data/results/training_size/metrics_seed{SEED}.png", bbox_inches='tight')
+	plt.savefig(f"../data/results/training_size/metrics_seed{SEED}.png", bbox_inches='tight')
 	plt.close()
 	
 
@@ -202,7 +203,7 @@ def determine_training_size(df_train, df_valid, targets_cols, labels, n_jobs=2):
 	sns.despine(top=True, right=False, left=False, bottom=False)
 	plt.ylabel('Memory usage (megabytes)', color=right_color)
 	plt.title(f'Model file size and memory usage - Seed {SEED}')
-	plt.savefig(f"./data/results/training_size/filesize-memory_seed{SEED}.png", bbox_inches='tight')
+	plt.savefig(f"../data/results/training_size/filesize-memory_seed{SEED}.png", bbox_inches='tight')
 	plt.close()
 
 	return training_size_time
@@ -336,7 +337,7 @@ def feature_selection(X_train, y_train, X_fs, y_fs, X_valid, y_valid, X_test, y_
 	    'RFE': [len(rfe_selected_features)],
 	    'Random Features': [len(causal_selected_features)]
 	})
-	df_num_feats.to_csv(f'./data/results/feature_selection/features/number_features_seed{SEED}.csv', index=False)
+	df_num_feats.to_csv(f'../data/results/feature_selection/features/number_features_seed{SEED}.csv', index=False)
 
 	# features
 	df_feats = pd.DataFrame({
@@ -346,7 +347,7 @@ def feature_selection(X_train, y_train, X_fs, y_fs, X_valid, y_valid, X_test, y_
 	    'RFE': [list(rfe_selected_features)],
 	    'Random Features': [random_selected_features.to_list()]
 	})
-	df_feats.to_csv(f'./data/results/feature_selection/features/selected_features_seed{SEED}.csv', index=False)
+	df_feats.to_csv(f'../data/results/feature_selection/features/selected_features_seed{SEED}.csv', index=False)
 
 	# performance metrics
 	df_metrics = pd.concat([
@@ -355,10 +356,10 @@ def feature_selection(X_train, y_train, X_fs, y_fs, X_valid, y_valid, X_test, y_
 	    boruta_results,
 	    rfe_results
 	])
-	df_metrics.to_csv(f'./data/results/feature_selection/metrics/feature_selection_metrics_valid_seed{SEED}.csv', index=False)
+	df_metrics.to_csv(f'../data/results/feature_selection/metrics/feature_selection_metrics_valid_seed{SEED}.csv', index=False)
 
 	# random features
-	df_results_random.to_csv(f'./data/results/feature_selection/metrics/random_features_metrics_test_seed{SEED}.csv', index=False)
+	df_results_random.to_csv(f'../data/results/feature_selection/metrics/random_features_metrics_test_seed{SEED}.csv', index=False)
 
 	# total pipeline time
 	df_pipeline_time = pd.DataFrame({
@@ -368,7 +369,7 @@ def feature_selection(X_train, y_train, X_fs, y_fs, X_valid, y_valid, X_test, y_
 	    'Boruta': [smote_time, training_size_time, boruta_decision_time, boruta_training_time],
 	    'RFE': [smote_time, training_size_time, rfe_decision_time, rfe_training_time],
 	})
-	df_pipeline_time.to_csv(f'./data/results/feature_selection/pipeline/pipeline_times_seed{SEED}.csv', index=False)
+	df_pipeline_time.to_csv(f'../data/results/feature_selection/pipeline/pipeline_times_seed{SEED}.csv', index=False)
 
 
 def main(args):
@@ -391,8 +392,8 @@ def main(args):
 	### training set size ###
 	#########################
 	# restore preprocessed data splits
-	df_train = pd.read_csv(f'./data/datasets/splits/BRUIIoT_train_preprocessed_seed{SEED}.csv')
-	df_valid = pd.read_csv(f'./data/datasets/splits/BRUIIoT_valid_preprocessed_seed{SEED}.csv')
+	df_train = pd.read_csv(f'../data/datasets/splits/BRUIIoT_train_preprocessed_seed{SEED}.csv')
+	df_valid = pd.read_csv(f'../data/datasets/splits/BRUIIoT_valid_preprocessed_seed{SEED}.csv')
 
 	# shuffle training set
 	df_train = df_train.sample(frac=1, random_state=SEED).reset_index(drop=True)
@@ -422,14 +423,14 @@ def main(args):
 	print('Defined training size:', df_train.shape[0])
 
 	# save training set with all features
-	df_train.to_csv(f'./data/datasets/splits/BRUIIoT_train_size{training_size_prop}_seed{SEED}.csv', index=False)
+	df_train.to_csv(f'../data/datasets/splits/BRUIIoT_train_size{training_size_prop}_seed{SEED}.csv', index=False)
 
 	#########################
 	### feature selection ###
 	#########################
 	# restore remaining data splits (fs and test)
-	df_fs = pd.read_csv(f'./data/datasets/splits/BRUIIoT_fs_preprocessed_seed{SEED}.csv')
-	df_test = pd.read_csv(f'./data/datasets/splits/BRUIIoT_test_preprocessed_seed{SEED}.csv')
+	df_fs = pd.read_csv(f'../data/datasets/splits/BRUIIoT_fs_preprocessed_seed{SEED}.csv')
+	df_test = pd.read_csv(f'../data/datasets/splits/BRUIIoT_test_preprocessed_seed{SEED}.csv')
 
 	# get procotols
 	modules = get_protocols(df_fs, targets_cols)
