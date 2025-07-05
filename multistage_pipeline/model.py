@@ -34,7 +34,7 @@ def train_xgboost(X_train, y_train, X_eval, y_eval, seed, method_name=None, save
         disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=list(labels.values()))
         disp.plot(cmap=plt.cm.Blues, xticks_rotation=45)
         plt.title(f'Confusion matrix: {method_name} - Seed {seed}')
-        plt.savefig(f"./data/results/confusion_matrix/cm_{method_name.lower().replace(' ', '-')}_seed{seed}.png", bbox_inches='tight')
+        plt.savefig(f"../data/results/confusion_matrix/cm_{method_name.lower().replace(' ', '-')}_seed{seed}.png", bbox_inches='tight')
         # plt.show()
         plt.close()
 
@@ -47,7 +47,7 @@ def train_xgboost(X_train, y_train, X_eval, y_eval, seed, method_name=None, save
             df_importance = df_importance.iloc[:30]
         sns.barplot(df_importance, x='importance', y='feature')
         plt.title(f'XGBoost feature importance (gain) - {method_name} - Seed {seed}')
-        plt.savefig(f"./data/results/feature_importance/fi_{method_name.lower().replace(' ', '-')}_seed{seed}.png", bbox_inches='tight')
+        plt.savefig(f"../data/results/feature_importance/fi_{method_name.lower().replace(' ', '-')}_seed{seed}.png", bbox_inches='tight')
         # plt.show()
         plt.close()
 
