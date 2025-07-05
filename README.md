@@ -4,15 +4,17 @@ This repository contains all source code used for the work of "An Efficient Mult
 
 For more information contact: victor.shirasuna@ime.usp.br
 
+![Multi-Stage Pipeline](images/multi-stage_pipeline.png "Multi-Stage Pipeline")
+
 ## Table of Contents
 
-1. [Getting Started](#getting-started)
+1. [Getting Started](#1.-getting-started)
     1. [Directory Organization](#directory-organization)
     2. [Replicating Python Environment](#replicating-python-environment)
     4. [Configuring the BRURIIoT dataset](#configuring-the-bruriiot-dataset)
-2. [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-(eda))
-3. [Running the Pipeline](#running-the-pipeline)
-4. [Running Predictions on Raspberry Pi](#running-predictions-on-raspberry-pi)
+2. [Exploratory Data Analysis (EDA)](#2.-exploratory-data-analysis-(eda))
+3. [Running the Pipeline](#3.-running-the-pipeline)
+4. [Running Predictions on Raspberry Pi](#4.-running-predictions-on-raspberry-pi)
 
 ## 1. Getting Started
 
