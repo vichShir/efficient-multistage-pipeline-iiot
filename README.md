@@ -1,28 +1,28 @@
-# An Efficient Feature Selection Pipeline for IIoT Threat Detection
+# An Efficient Multi-Stage Pipeline for IIoT Threat Detection
 
-This repository contains all source code used for the work of "An Efficient Feature Selection Pipeline for IIoT Threat Detection".
+This repository contains all source code used for the work of "An Efficient Multi-Stage Pipeline for IIoT Threat Detection".
 
 For more information contact: victor.shirasuna@ime.usp.br
 
 ## Table of Contents
 
 1. [Getting Started](#getting-started)
-	1. [Directory Organization](#directory-organization)
-    2. [Replicating Python Environment - Pipeline](#replicating-python-environment---pipeline)
-    3. [Replicating Python Environment - Raspberry Pi](#replicating-python-environment---raspberry-pi)
-    4. [Configuring BRURIIoT dataset](#configuring-bruriiot-dataset)
-2. [Running the Pipeline](#running-the-pipeline)
-3. [Running Predictions on Raspberry Pi](#running-predictions-on-raspberry-pi)
+    1. [Directory Organization](#directory-organization)
+    2. [Replicating Python Environment](#replicating-python-environment)
+    4. [Configuring the BRURIIoT dataset](#configuring-the-bruriiot-dataset)
+2. [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-(eda))
+3. [Running the Pipeline](#running-the-pipeline)
+4. [Running Predictions on Raspberry Pi](#running-predictions-on-raspberry-pi)
 
-## Getting Started
+## 1. Getting Started
 
-Follow these steps to replicate our data organization and Python environment with the necessary libraries:
+Follow these steps to replicate our data organization and Python environment:
 
 ### Directory Organization
 
-#### Create Folders for Pipeline
+#### Multi-Stage Pipeline Structure
 
-The pipeline automatically creates the following folders:
+The multi-stage pipeline will automatically create the following directories:
 ```
 data/
 ├── datasets/
@@ -34,7 +34,6 @@ data/
 └── results/
     ├── confusion_matrix
     ├── feature_importance
-    ├── feature_selection
     ├── inference_time
     ├── training_size
     └── feature_selection/
@@ -53,7 +52,7 @@ raspberry_pi/
 └── results
 ```
 
-### Replicating Python Environment - Pipeline
+### Replicating Python Environment
 
 #### Install Miniforge
 
@@ -68,45 +67,33 @@ mamba activate pipeline
 
 #### Install Pip dependencies
 
+For the `multi-stage pipeline` environment, use the following command:
 ```shell
 pip install -r requirements_pipeline.txt
 ```
 
-### Replicating Python Environment - Raspberry Pi
-
-#### Install Miniforge
-
-Install miniforge with conda version `24.9.2` and mamba version `1.5.9` from: https://github.com/conda-forge/miniforge/releases/tag/24.9.2-0
-
-#### Create and Activate Mamba Environment
-
+For the `Raspberry Pi` environment, use the following command:
 ```shell
-mamba create -n raspberry python=3.10.16
-mamba activate raspberry
+pip install -r requirements_raspberrypi.txt
 ```
 
-#### Install Pip dependencies
+### Configuring the BRURIIoT dataset
 
-For Raspberry Pi environment, only the following python dependencies are required from `requirements.txt`:
-```shell
-pip install -r requirements_raspberry.txt
-```
-
-### Configuring BRURIIoT dataset
-
-The BRURIIoT dataset can be downloaded at the following link: https://ieee-dataport.org/documents/bruriiot-dataset-network-anomaly-detection-iiot-enhanced-feature-engineering-approach
+The `BRURIIoT` dataset can be downloaded at the following link: https://ieee-dataport.org/documents/bruriiot-dataset-network-anomaly-detection-iiot-enhanced-feature-engineering-approach
 
 Place the `BRUIIoT.csv` dataset file at the following location:
 ```
 data/
 └── datasets/
-    ├── splits
-    ├── features
+    ├── splits/
+    ├── features/
     └── BRUIIoT.csv
 ```
 
-The pipeline will automatically create the necessary data splits and place at `data/datasets/splits` path.
+> The pipeline will automatically create the necessary data splits and place at `data/datasets/splits` path.
 
-### Running the Pipeline
+## 2. Exploratory Data Analysis (EDA)
 
-### Running Predictions on Raspberry Pi
+## 3. Running the Pipeline
+
+## 4. Running Predictions on Raspberry Pi
