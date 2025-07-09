@@ -93,12 +93,6 @@ def fs_markov_blanket(X_train, y_train, protocols, seed, thresholds=[0.01, 0.001
     # select features
     selected_features = X_train[selected_features].iloc[:, model.MB].columns
 
-    # plot mutual information distribution
-    # model.MB = selected_features
-    # model.feature_importance()
-    # plt.show()
-    # plt.close()
-
     return selected_features
 
 

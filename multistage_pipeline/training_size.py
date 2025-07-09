@@ -9,7 +9,6 @@ from tqdm import tqdm
 
 
 def get_model_size(x, seed, path='./'):
-    # prop = x.split(' ')[-1].replace('%', '')
     prop = x.replace('%', '')
     filename = f'training_size_{prop}_seed{seed}.pkl'
     model_size = os.path.getsize(os.path.join(path, filename))
@@ -44,7 +43,6 @@ def training_size(df_train, X_valid, y_valid, seed, model_save_dir, labels, n_jo
 	        labels=labels,
 	        n_jobs=n_jobs
 	    )
-	    print('Baseline model results above.')
 	    memory_usage = df_train_prop.memory_usage(index=True).sum()
 	    res['memory_usage'] = convert_bytes_to_megabytes(memory_usage)
 	    res['sample_size'] = df_train_prop.shape[0]
@@ -54,6 +52,8 @@ def training_size(df_train, X_valid, y_valid, seed, model_save_dir, labels, n_jo
 	    del X_train_prop
 	    del y_train_prop
 	    gc.collect()
+
+	print('Baseline model results above.')
 
 	df_results = pd.concat(df_results, axis=0)
 	df_results['model_size'] = df_results['model'].apply(lambda x: get_model_size(x, seed, path=model_save_dir))

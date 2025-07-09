@@ -13,6 +13,9 @@ import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import warnings
+warnings.filterwarnings("ignore") 
+
 
 def train_xgboost(X_train, y_train, X_eval, y_eval, seed, method_name=None, save_dir='./', filename='xgb.pkl', verbose=1, labels=None, n_jobs=2):
     # train XGBoost
@@ -35,7 +38,6 @@ def train_xgboost(X_train, y_train, X_eval, y_eval, seed, method_name=None, save
         disp.plot(cmap=plt.cm.Blues, xticks_rotation=45)
         plt.title(f'Confusion matrix: {method_name} - Seed {seed}')
         plt.savefig(f"../data/results/confusion_matrix/cm_{method_name.lower().replace(' ', '-')}_seed{seed}.png", bbox_inches='tight')
-        # plt.show()
         plt.close()
 
         # feature importance
@@ -48,7 +50,6 @@ def train_xgboost(X_train, y_train, X_eval, y_eval, seed, method_name=None, save
         sns.barplot(df_importance, x='importance', y='feature')
         plt.title(f'XGBoost feature importance (gain) - {method_name} - Seed {seed}')
         plt.savefig(f"../data/results/feature_importance/fi_{method_name.lower().replace(' ', '-')}_seed{seed}.png", bbox_inches='tight')
-        # plt.show()
         plt.close()
 
         print('')
