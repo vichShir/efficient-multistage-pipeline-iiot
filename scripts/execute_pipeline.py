@@ -63,10 +63,10 @@ def main(args):
 	header('Efficient Multi-Stage Pipeline')
 
 	# load splits
-	df_train = pd.read_csv(os.path.join(args.data_splits_path, f'BRUIIoT_train_preprocessed_seed{SEED}.csv')).sample(50000)
-	df_fs = pd.read_csv(os.path.join(args.data_splits_path, f'BRUIIoT_fs_preprocessed_seed{SEED}.csv')).sample(1000)
-	df_valid = pd.read_csv(os.path.join(args.data_splits_path, f'BRUIIoT_valid_preprocessed_seed{SEED}.csv')).sample(1000)
-	df_test = pd.read_csv(os.path.join(args.data_splits_path, f'BRUIIoT_test_preprocessed_seed{SEED}.csv')).sample(1000)
+	df_train = pd.read_csv(os.path.join(args.data_splits_path, f'BRUIIoT_train_preprocessed_seed{SEED}.csv'))
+	df_fs = pd.read_csv(os.path.join(args.data_splits_path, f'BRUIIoT_fs_preprocessed_seed{SEED}.csv'))
+	df_valid = pd.read_csv(os.path.join(args.data_splits_path, f'BRUIIoT_valid_preprocessed_seed{SEED}.csv'))
+	df_test = pd.read_csv(os.path.join(args.data_splits_path, f'BRUIIoT_test_preprocessed_seed{SEED}.csv'))
 
 	# shuffle training set
 	df_train = df_train.sample(frac=1, random_state=SEED).reset_index(drop=True)
