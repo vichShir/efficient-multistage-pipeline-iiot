@@ -114,6 +114,17 @@ cd ./scripts
 python execute_pipeline.py --seed 0 --n_jobs 10
 ```
 
+### Instructions
+
+The user will be prompted to provide the **sufficient training size proportion** to proceed to the second-stage. One can analyze the plot saved at `data/results/training_size/metrics_seed{SEED}.png` image. 
+
+To get the sufficient proportion we analyze the delta lines where all points are near to 0, meaning that no more improvements were observed. 
+
+After, simply pass the proportion like below:
+```
+Which training size proportion to use? >>>0.155
+``` 
+
 ## 4. Running Predictions on Raspberry Pi
 
 Copy and paste all trained models from `data/models/feature_selection` to your Raspberry Pi environment at `raspberry_pi/models`.
