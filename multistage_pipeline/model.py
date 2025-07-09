@@ -51,6 +51,7 @@ def train_xgboost(X_train, y_train, X_eval, y_eval, seed, method_name=None, save
         # plt.show()
         plt.close()
 
+        print('')
         print('\tEvaluation accuracy:', acc)
         print('\tEvaluation precision:', precision)
         print('\tEvaluation recall:', recall)

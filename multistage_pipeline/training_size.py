@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 import gc
+
 from multistage_pipeline.model import train_xgboost
 from multistage_pipeline.utils import convert_bytes_to_megabytes
 from tqdm import tqdm
@@ -43,6 +44,7 @@ def training_size(df_train, X_valid, y_valid, seed, model_save_dir, labels, n_jo
 	        labels=labels,
 	        n_jobs=n_jobs
 	    )
+	    print('Baseline model results above.')
 	    memory_usage = df_train_prop.memory_usage(index=True).sum()
 	    res['memory_usage'] = convert_bytes_to_megabytes(memory_usage)
 	    res['sample_size'] = df_train_prop.shape[0]

@@ -108,13 +108,16 @@ We conducted an Exploratory Data Analysis (EDA) of the BRURIIoT dataset to furth
 
 To execute the efficient multi-stage pipeline, simply execute the following:
 > In our experiments, we used `seed` values of 0, 10, 20, 30, and 40. We also set the `n_jobs` argument to 10 using an Intel Xeon Gold 6148.
-> We recommend a minimum of 32GB RAM system for using the `BRURIIoT` dataset.
+>
+> A minimum of 32GB RAM system is recommended for using the `BRURIIoT` dataset.
 ```shell
 cd ./scripts
 python execute_pipeline.py --seed 0 --n_jobs 10
 ```
 
 ### Instructions
+
+#### Sufficient Training Size
 
 The user will be prompted to provide the **sufficient training size proportion** to proceed to the second-stage. One can analyze the plot saved at `data/results/training_size/metrics_seed{SEED}.png` image. 
 
@@ -123,9 +126,24 @@ To get the sufficient proportion we analyze the delta lines where all points are
 After, simply pass the proportion like below:
 ```
 Which training size proportion to use? >>>0.155
-``` 
+```
+
+#### Results
+
+The following are the results from the `multi-stage pipeline`:
+- **First Stage**
+    - Performance plot: `data/results/training_size/metrics_seed{SEED}.png`
+    - Performance metrics: `data/results/training_size/training_size_results_seed{SEED}.csv`
+    - Computational consumption: `data/results/training_size/filesize-memory_seed{SEED}.png`
+- **Second Stage**
+    - Confusion Matrix: `data/results/confusion_matrix`
+    - Feature Importance: `data/results/feature_importance`
+    - Feature Selection:
+        - Number and selected features: `data/results/feature_selection/features`
+        - Performance metrics: `data/results/metrics`
+        - Pipeline time: `data/results/pipeline`
 
 ## 4. Running Predictions on Raspberry Pi
 
 Copy and paste all trained models from `data/models/feature_selection` to your Raspberry Pi environment at `raspberry_pi/models`.
-> In our experiments, we used a Raspberry Pi 4 Model B with 4GB RAM running on Raspbian 64-bit OS.
+> A Raspberry Pi 4 Model B with 4GB RAM running on Raspbian 64-bit OS was used in our experiments.

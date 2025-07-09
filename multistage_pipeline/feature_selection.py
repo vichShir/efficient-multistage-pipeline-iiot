@@ -94,10 +94,10 @@ def fs_markov_blanket(X_train, y_train, protocols, seed, thresholds=[0.01, 0.001
     selected_features = X_train[selected_features].iloc[:, model.MB].columns
 
     # plot mutual information distribution
-    model.MB = selected_features
-    model.feature_importance()
+    # model.MB = selected_features
+    # model.feature_importance()
     # plt.show()
-    plt.close()
+    # plt.close()
 
     return selected_features
 
@@ -117,7 +117,7 @@ def fs_boruta(X_fs, y_fs, seed, max_iter=30, n_estimators=100, verbose=2, n_jobs
 def fs_rfe(X_fs, y_fs, n_features_to_select, seed):
     # recursive feature elimination
     clf = DecisionTreeClassifier(random_state=seed)
-    selector = RFE(clf, n_features_to_select=n_features_to_select, step=2)
+    selector = RFE(clf, n_features_to_select=n_features_to_select, step=2, verbose=1)
     selector = selector.fit(X_fs, y_fs)
 
     # select features
