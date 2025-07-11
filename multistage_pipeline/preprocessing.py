@@ -88,19 +88,25 @@ def preprocess_data(df_train, df_fs, df_valid, df_test, data_splits_path, seed=0
 	})
 	df_labels_balanced['type'] = 'Balanced'
 
+	df_labels_original['count'] = df_labels_original['count'] / df_labels_original['count'].sum()
+	df_labels_balanced['count'] = df_labels_balanced['count'] / df_labels_balanced['count'].sum()
+
+	df_labels_original['count'] = df_labels_original['count'].round(2)
+	df_labels_balanced['count'] = df_labels_balanced['count'].round(2)
+
 	df_labels_plot = pd.concat([df_labels_original, df_labels_balanced], axis=0)
 	
-	ax = sns.barplot(df_labels_plot, x='attack_label__most_frequent', y='count', hue='type')
+	ax = sns.barplot(df_labels_plot, x='attack_label__most_frequent', y='count', hue='type', palette=["tab:blue", "gold"])
 	ax.bar_label(ax.containers[0], fontsize=9)
 	ax.bar_label(ax.containers[1], fontsize=9)
 	ax.tick_params(left=False)
 	ax.set(yticklabels=[])
 
 	sns.despine(top=True, right=True, left=True, bottom=False)
-	plt.title('Attack types distribution - Training set')
+	plt.title('Attack types distribution - Training set', fontsize=18)
 	plt.xlabel('')
 	plt.ylabel('')
-	plt.xticks(rotation=30)
+	plt.xticks(rotation=15)
 	plt.tight_layout()
 	plt.savefig(f"../data/results/attack_distribution_training.png", bbox_inches='tight')
 	plt.close()
