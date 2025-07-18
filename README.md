@@ -142,8 +142,22 @@ The following are the results from the `multi-stage pipeline`:
         - Number and selected features: `data/results/feature_selection/features`
         - Performance metrics: `data/results/metrics`
         - Pipeline time: `data/results/pipeline`
+    - Trained models: `data/models`
 
 ## 4. Running Predictions on Raspberry Pi
 
-Copy and paste all trained models from `data/models/feature_selection` to your Raspberry Pi environment at `raspberry_pi/models`.
+Copy and paste all trained models from `data/models/feature_selection` to your Raspberry Pi environment at `raspberry_pi/models`. Similarly, copy the baseline model from `data/models/training_size/training_size_100.0_seed{SEED}.pkl` as well.
 > A Raspberry Pi 4 Model B with 4GB RAM running on Raspbian 64-bit OS was used in our experiments.
+
+To run the inference time predictions on a real-world device, simply run the following scripts from `raspberry_pi` folder:
+```shell
+bash run_all-features.sh
+bash run_boruta.sh
+bash run_mb.sh
+bash run_mi.sh
+bash run_random.sh
+bash run_rfe.sh
+```
+> In the random selection script, change the `NUM_FEATS` variable to the number of selected features to match the model filename.
+
+The results in `.csv` files will be saved in the `results` folder in the same path of the scripts.
