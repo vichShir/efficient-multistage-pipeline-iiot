@@ -11,7 +11,7 @@ def main(args):
         df = pd.read_csv(f'../data/datasets/splits/{args.filename}')
 
     # feature selection
-    all_features = pd.read_csv(f'./data/results/feature_selection/features/selected_features_seed{args.seed}.csv')
+    all_features = pd.read_csv(f'../data/results/feature_selection/features/selected_features_seed{args.seed}.csv')
     fs_methods = all_features.columns.to_list()
     for fs in tqdm(fs_methods):
         selected_features = ast.literal_eval(all_features[fs].iloc[0])
