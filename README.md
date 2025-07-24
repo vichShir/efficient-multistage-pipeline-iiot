@@ -146,8 +146,32 @@ The following are the results from the `multi-stage pipeline`:
 
 ## 4. Running Predictions on Raspberry Pi
 
-Copy and paste all trained models from `data/models/feature_selection` to your Raspberry Pi environment at `raspberry_pi/models`. Similarly, copy the baseline model from `data/models/training_size/training_size_100.0_seed{SEED}.pkl` as well.
+### Setup
+
+#### Models
+
+First, copy and paste all trained models from `data/models/feature_selection` to your Raspberry Pi environment at `raspberry_pi/models`. 
+
+Similarly, copy the baseline model from `data/models/training_size/training_size_100.0_seed{SEED}.pkl` as well.
 > A Raspberry Pi 4 Model B with 4GB RAM running on Raspbian 64-bit OS was used in our experiments.
+
+#### Datasets
+
+Before running the predictions, certify to create the data splits with the selected features.
+
+For this, simply run the following scripts for test and training sets:
+```shell
+cd scripts
+bash run_save_feature_files_test.sh
+bash run_save_feature_files_train.sh
+```
+> All splits will be saved at `./data/datasets/features` path.
+
+For the training sets, you will be asked to provide the proportion for each seed. This will match the filename of the dataset saved at `./data/datasets/splits`.
+
+### Predictions
+
+After setting up the models and datasets on your Raspberry Pi environment, one can run the predictions.
 
 To run the inference time predictions on a real-world device, simply run the following scripts from `raspberry_pi` folder:
 ```shell
