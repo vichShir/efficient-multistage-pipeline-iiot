@@ -14,7 +14,14 @@ For more information contact: victor.shirasuna@ime.usp.br
     3. [Replicating Python Environment](#replicating-python-environment)
 2. [Exploratory Data Analysis (EDA)](#2-exploratory-data-analysis-eda)
 3. [Running the Pipeline](#3-running-the-pipeline)
+    1. [Instructions](#instructions)
+        1. [Sufficient Training Size](#sufficient-training-size)
+        2. [Results](#results)
 4. [Running Predictions on Raspberry Pi](#4-running-predictions-on-raspberry-pi)
+    1. [Setup](#setup)
+        1. [Models](#models)
+        2. [Datasets](#datasets)
+    2. [Predictions](#predictions)
 
 ## 1. Getting Started
 
