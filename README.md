@@ -2,6 +2,12 @@
 
 This repository contains all source code used for the work of "An Efficient Multi-Stage Pipeline for IIoT Threat Detection".
 
+**Code related to the paper:**
+
+SILVA, E. J. ; CRUZ, E. K. ; SHIRASUNA, V. Y. ; LIMA, M. N. ; SANTOS, A. L. ; BATISTA, D. M. ; HIRATA JR., R. .
+**An Efficient Multi-stage Pipeline for IIoT Threat Detection**.
+In: Proceedings of the 2025 IEEE LatinAmerican Conference on Communications (LATINCOM), 2025 **[To be published]**
+
 For more information contact: victor.shirasuna@ime.usp.br
 
 ![Multi-Stage Pipeline](./images/multi-stage_pipeline.png)
@@ -22,6 +28,7 @@ For more information contact: victor.shirasuna@ime.usp.br
         1. [Models](#models)
         2. [Datasets](#datasets)
     2. [Predictions](#predictions)
+5. [Citation](#5-citation)
 
 ## 1. Getting Started
 
@@ -192,3 +199,7 @@ bash run_rfe.sh
 > In the random selection script, change the `NUM_FEATS` variable to the number of selected features to match the model filename.
 
 The results in `.csv` files will be saved in the `results` folder in the same path of the scripts.
+
+## 5. Citation
+
+To be published.
